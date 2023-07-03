@@ -1,0 +1,41 @@
+.main {
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    top: 10px;
+    background-color: rgb(80,80,238);
+    overflow: hidden;
+  }
+.sub-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 76%;
+    width: 97.5%;
+    min-width: 525px;
+    top:100px;
+    padding-top: 100px;
+    border-radius: 13px;
+    background-color: #222;
+    margin-top: 125px;
+  }
+.chart-page {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    height: 105%;
+    width: 83%;
+    min-width: 500px;
+    padding-top: 10px;
+    border-radius: 13px;
+    background-color: white;
+    margin-bottom: 100px;
+  }
+  .chart-Canvas{
+    width: 100%;
+  }
+  .canvas{
+    width: 100%;
+  }
