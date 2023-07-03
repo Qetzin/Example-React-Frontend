@@ -6,15 +6,55 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 function Notes(){
-    const [chosenDate,setDate] = useState(new Date());
     const [curNotes,setCurNotes] = useState([]);
     const [isDone,setIsDone] = useState(false);
-    const getCurrentNotes = async () =>{
+    const [addNewNote,setAdd] = useState(false);
+    const [titleInput,setTitle] = useState("");
+    const [contentInput,setContent] = useState("");
+    const [displayDate,setDiplayDate] = useState(new Date());
+    var chosenDate = new Date();
+    const handleChangeDate = async (e) => {
+        setDiplayDate(e);
+        chosenDate = e;
+        getCurrentNotes(chosenDate);
+    }
+    const handleTitle = (e) => {
+        setTitle(e.target.value);
+    }
+    const handleContent = (e) => {
+        setContent(e.target.value);
+    }   
+    const handleAdd = () =>{
+        setAdd(!addNewNote);
+    }
+    function timeout(delay) {
+        return new Promise( res => setTimeout(res, delay) );
+    }
+    const handleAddNote = async () => {
+        setAdd(false);
+        const requestOptions = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ 
+                content: contentInput,
+                title: titleInput , 
+                date: displayDate.toISOString()
+            }),
+        };
+        const response = await fetch(
+            "http://localhost:5098/api/Notes",
+            requestOptions
+            );
+            getCurrentNotes(displayDate);
+            if(response.status =="200"){
+            }
+    }
+    const getCurrentNotes = async (date) =>{
         setIsDone(false);
         const requestOptions = {
             method:"GET"
         }
-        const response = await fetch("http://localhost:5098/api/Notes/getByDate/"+chosenDate.toLocaleDateString('en-CA'),requestOptions);
+        const response = await fetch("http://localhost:5098/api/Notes/getByDate/"+date.toLocaleDateString('en-CA'),requestOptions);
         await response.json().then(function(data){
             curNotes.length = 0;
             data.forEach(element => {
@@ -22,9 +62,8 @@ function Notes(){
                 setIsDone(false);
             })
         })
-            setIsDone(true);
-    }
-    const handleAdd = () =>{
+        setIsDone(true);
+        setAdd(false);
     }
     const listItems = curNotes.map((item)=>{
         return(
@@ -43,14 +82,26 @@ function Notes(){
                 <div className="user-date">
                     <div className="date-selection-panel">
                     <label className="text-title">Select date:</label>
-                    <DatePicker className="date-picker" selected={chosenDate} onChange={(date)=>{setDate(date);setIsDone(false)}}/>
-                    <button className="button-confirm" onClick={getCurrentNotes}>Update notes</button>
+                    <DatePicker className="date-picker" selected={displayDate} onChange={(date)=>{handleChangeDate(date);setIsDone(false)}}/>
                     </div>
                 </div>
                 <div className="notes-panel" id="np">
-                    {isDone? (<div>{listItems} 
-                    <br/>
-                    <button className="add-button" onClick={handleAdd}><AiOutlinePlus/></button></div>):(<div>Update notes!</div>)}
+                    {isDone? (<div>
+                        <br/>
+                    <button className="add-button" onClick={handleAdd}><AiOutlinePlus/></button>
+                    {addNewNote?(<div>
+                        <div className="divider"></div>
+                            <div className="note-element"><br/>
+                                <label className="text-title">Enter title:</label>
+                                <input className="text-title-input" type="text" onChange={handleTitle}/>
+                                <label className="text">Enter note:</label>
+                                <input className="text-input" type="text" onChange={handleContent}/> <br/>
+                                <button className="button-confirm" onClick={handleAddNote}>Add Note</button>
+                            </div>
+                        </div>):(<div></div>)}
+                        {listItems} 
+                    
+                    </div>):(<div>Update notes!</div>)}
                 </div>
             </div>
         </div>

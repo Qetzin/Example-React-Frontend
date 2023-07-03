@@ -40,6 +40,28 @@
     border-radius: 13px;
     margin-top: 10px;
 }
+.text-input{
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: auto;
+    width: 95%;
+    margin-left: 0.8%;
+    display: flex;
+    font-size: 15px;
+    text-decoration: none;
+    color:#222;
+    padding: 0.7rem 1rem;
+    white-space: nowrap;
+}
+.text-title-input{
+    height: 9px;
+    text-align: center;
+    font-size: 20px;
+    text-decoration: none;
+    color:#222;
+    padding: 0.7rem 1rem;
+    white-space: nowrap;
+}
 .text{
     display: flex;
     font-size: 15px;
@@ -60,6 +82,7 @@
     padding-top: 25px;
 }
 .button-confirm{
+    margin-top: 10px;
     margin-left: 10px;
     height: 25px;
     border-radius: 13px;
@@ -69,6 +92,7 @@
     border: none;
 }
 .add-button{
+    width: 40px;
     padding-top: 6px;
     text-align: center;
     margin-left: 10px;
