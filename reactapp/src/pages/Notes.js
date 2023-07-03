@@ -101,7 +101,7 @@ function Notes(){
                         </div>):(<div></div>)}
                         {listItems} 
                     
-                    </div>):(<div>Update notes!</div>)}
+                    </div>):(<div>Select date</div>)}
                 </div>
             </div>
         </div>
