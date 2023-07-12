@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Backend
 
-Backend application can be found [here](https://github.com/Qetzin/API).
+Backend application can be found [here](https://github.com/Qetzin/Example-API-Backend).
 
 ## Available Scripts
 
