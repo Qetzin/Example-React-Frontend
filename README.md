@@ -2,7 +2,10 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Backend application can be found [here](https://github.com/Qetzin/API)).
+# Backend
+
+Backend application can be found [here](https://github.com/Qetzin/API).
+
 ## Available Scripts
 
 In the project directory, you can run:
